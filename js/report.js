@@ -1,4 +1,5 @@
 const API_URL = 'http://10.2.30.9:8000/api'
+let orgIds = Array();
 
 const getVarFromUrl = (key) => {
 	const vars = {};
@@ -50,7 +51,6 @@ const getApiToken = async () => {
     if (v['description'] === 'Expired') {
         window.location='/?err=Expired'
     }
-    console.log(v);
     return (v.token)
 }
 
@@ -72,34 +72,73 @@ const apiRequest  = async () => {
     })
 }
 
-const main = () => {
+const getWebInfo = async(toplistId) => {
+    let apiToken = await getApiToken();
+    response = await fetch(API_URL+'/site/'+toplistId, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': apiToken
+        },
+        redirect: 'error',
+        referrerPolicy: 'origin'
+    })
+    .then(response => response.json())
+    .then(data => {
+        let site = data;
+        const div = document.querySelector('#mainTable div#site'+toplistId);
+        div.textContent = div.textContent + ' - ' + site['title'] + ':' + site['url'] + site['visitsWeek']
+    })
+}
+
+const toplistIds = async() => {
+    let apiToken = await getApiToken();
+    response = await fetch(API_URL+'/org/'+orgIds[0]+'/ids', {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': apiToken
+        },
+        redirect: 'error',
+        referrerPolicy: 'origin'
+    })
+    .then(response => response.json())
+    .then(data => {
+        let ids = data['data'];
+        ids.forEach(row => {
+            let divWeb = document.createElement("div");
+            divWeb.textContent = row['toplistId'];
+            divWeb.id = 'site'+row['toplistId'];
+            divWeb.classList.add('web');
+            document.querySelector("#mainTable").appendChild(divWeb)
+            getWebInfo(row['toplistId'])
+        })
+    })
+}
+
+const main = async () => {
     let JWT = parseJwt(getVarFromUrl('jwt'))
     if (!JWT) {
         window.location='/?err=password'
     }
     
-    let orgIds = Array();
     Object.keys(JWT.sco).forEach(scope => {
         if (scope.substring(0,4) === 'org:') {
-            orgIds.push(scope.substring(5))
+            orgIds.push(scope.substring(4))
         }
     })
     if (orgIds.length === 0) {
         alert('No organization specified. Contact profi@toplist.cz')
         return
     }
-    let td = document.createElement("td")
-    td.textContent = orgIds[0]
-    let tr = document.createElement("tr")
-    tr.appendChild(td)
-    document.querySelector("#mainTable").appendChild(tr)
 
-
-    getApiToken()
-
-    getApiToken()
-    getApiToken()
-    getApiToken()
+    toplistIds();
 }
 
 main()

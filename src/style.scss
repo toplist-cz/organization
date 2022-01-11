@@ -1,6 +1,14 @@
 $backgroundColor: #438eb9;
 
+body {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
 .header {
     background-color: $backgroundColor;
     color: white;
+}
+
+.web {
+    background-color: lightgray;
 }
