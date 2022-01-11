@@ -23,6 +23,55 @@ const parseJwt = (token) => {
 	}
 }
 
+var apiAuthPromise = null;
+const auth = async () => {
+    if (apiAuthPromise !== null) {
+        return apiAuthPromise;
+    }
+    apiAuthPromise = fetch(API_URL+'/auth/cf5ac64a-ec50-11ea-9d60-a3da01a0b5f8', {
+        method: 'PUT',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        redirect: 'error',
+        referrerPolicy: 'origin',
+        body: JSON.stringify({
+            "token": getVarFromUrl('jwt')
+        })
+    });
+    return apiAuthPromise;
+}
+
+const getApiToken = async () => {
+    let v = await apiRequest()
+    if (v['description'] === 'Expired') {
+        window.location='/?err=Expired'
+    }
+    console.log(v);
+    return (v.token)
+}
+
+var apiToken = null;
+const apiRequest  = async () => {
+    if (apiToken !== null) {
+        return apiToken;
+    }
+    return new Promise(async (resolve) => {
+        if (apiToken) {
+            resolve(apiToken);
+        }
+        await auth().then(response => {
+            if (!apiToken) {
+                apiToken = response.json();
+            };
+            resolve(apiToken)
+        })
+    })
+}
+
 const main = () => {
     let JWT = parseJwt(getVarFromUrl('jwt'))
     if (!JWT) {
@@ -44,6 +93,13 @@ const main = () => {
     let tr = document.createElement("tr")
     tr.appendChild(td)
     document.querySelector("#mainTable").appendChild(tr)
+
+
+    getApiToken()
+
+    getApiToken()
+    getApiToken()
+    getApiToken()
 }
 
 main()
