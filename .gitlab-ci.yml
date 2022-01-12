@@ -2,12 +2,12 @@ build:
   image: node:15
   stage: build
   script:
-    - npm install --progress=false
-    - npm run build
+    - npm i node-sass --save-dev
+    - node-sass --include-path assets/css --output-style compressed assets/css/style.scss --output assets/css
   artifacts:
     expire_in: 1 week
     paths:
-      - dist
+      - /
 
 deploy-dev:
   image: alpine:latest
@@ -18,4 +18,4 @@ deploy-dev:
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
-    - rsync -rav --delete-after -e "ssh -o \"UserKnownHostsFile=/dev/null\" -o \"StrictHostKeyChecking=no\"" dist/ gitlab@10.183.148.183:www/organization
+    - rsync -rav --delete-after -e "ssh -o \"UserKnownHostsFile=/dev/null\" -o \"StrictHostKeyChecking=no\"" / gitlab@10.183.148.183:www/organization
