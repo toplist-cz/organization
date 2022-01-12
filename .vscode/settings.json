@@ -4,13 +4,13 @@
         {
             "format": "expanded",
             "extensionName": ".css",
-            "savePath": "/css"
+            "savePath": "/assets/css"
         },
         // You can add more
         {
             "format": "compressed",
             "extensionName": ".min.css",
-            "savePath": "/css"
+            "savePath": "/assets/css"
         }
     ]
 }
