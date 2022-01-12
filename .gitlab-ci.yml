@@ -2,8 +2,8 @@ build:
   image: node:16
   stage: build
   script:
-    - npm i node-sass --save-dev
-    - node-sass --include-path assets/css --output-style compressed assets/css/style.scss --output assets/css
+    - npm i sass --save-dev
+    - sass --include-path assets/css --output-style compressed assets/css/style.scss --output assets/css
   artifacts:
     expire_in: 1 week
     paths:
