@@ -3,7 +3,7 @@ build:
   stage: build
   script:
     - npm i -g sass
-    - sass --include-path assets/css --output-style compressed assets/css/style.scss --output assets/css
+    - sass --load-path assets/css --no-source-map --style compressed assets/css/style.scss --output assets/css
   artifacts:
     expire_in: 1 week
     paths:
