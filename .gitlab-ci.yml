@@ -1,5 +1,5 @@
 build:
-  image: node:15
+  image: node:16
   stage: build
   script:
     - npm i node-sass --save-dev
