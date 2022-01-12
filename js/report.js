@@ -90,7 +90,10 @@ const getWebInfo = async(toplistId) => {
     .then(data => {
         let site = data;
         const div = document.querySelector('#mainTable div#site'+toplistId);
-        div.textContent = div.textContent + ' - ' + site['title'] + ':' + site['url'] + site['visitsWeek']
+        let status = (site['visitsYesterday']==0)?((site['visitsWeek']==0)?"err":"warn"):"ok";
+        site['bdgClass'] = 'badge-'+status;
+        div.classList.add(status);
+        div.innerHTML = tmpl("item_tmpl", site);
     })
 }
 
@@ -113,7 +116,7 @@ const toplistIds = async() => {
         let ids = data['data'];
         ids.forEach(row => {
             let divWeb = document.createElement("div");
-            divWeb.textContent = row['toplistId'];
+            divWeb.textContent = 'Loading ..';
             divWeb.id = 'site'+row['toplistId'];
             divWeb.classList.add('web');
             document.querySelector("#mainTable").appendChild(divWeb)
@@ -139,6 +142,18 @@ const main = async () => {
     }
 
     toplistIds();
+
+    document.querySelector("#okSwitch").addEventListener("click", (e) => {
+        document.querySelectorAll("#mainTable div.ok").forEach(box => {box.classList.toggle('hidden')})
+        document.querySelector("#okSwitch").classList.toggle('badge-ok');
+    });
+    
 }
 
-main()
+var ready = (callback) => {
+    if (document.readyState != "loading") callback();
+    else document.addEventListener("DOMContentLoaded", callback);
+}
+ready(() => { 
+    main();
+});

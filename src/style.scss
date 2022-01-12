@@ -1,14 +1,76 @@
 $backgroundColor: #438eb9;
+$okColor:#6fd371;
+$warnColor:#fcb63d;
+$errColor:#ff5353;
 
-body {
+html, body {
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    margin: 0;
 }
 
-.header {
-    background-color: $backgroundColor;
-    color: white;
+.navbar img {
+    height: 48px;
+    width: 48px;
 }
 
 .web {
-    background-color: lightgray;
+    padding-left: 1em;
+}
+
+.navbar-brand {
+    float: left;
+}
+
+.navbar {
+    height: 48px;
+    background-color: $backgroundColor;
+    color: white;
+    padding-left: 0.5em;
+    margin-bottom: 1em;
+}
+
+h1 {
+    margin: 0;
+    margin-left: 75px;
+}
+
+.img-stat {
+    width: 15px;
+    height: 15px;
+    margin-left: 5px;
+}
+
+.badge {
+    display: inline;
+    font-size: 90%;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 0px 4px 0px 3px;
+}
+
+.badge-ok {
+    background-color: lighten($okColor,30);
+    border-color: $okColor;
+}
+
+.badge-warn {
+    background-color: lighten($warnColor,30);
+    border-color: $warnColor;
+}
+
+.badge-err {
+    background-color: lighten($errColor,30);
+    border-color: $errColor;
+}
+
+.hidden {
+    display: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:hover {
+    filter: opacity(70%);
 }
