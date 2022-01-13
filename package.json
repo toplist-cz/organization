@@ -5,7 +5,7 @@
       "sass": "latest"
     },
     "scripts": {
-      "scss": "sass --load-path assets/css --no-source-map --style compressed assets/css/style.scss assets/css/style.css",
+      "scss": "npx sass --load-path assets/css --no-source-map --style compressed assets/css/style.scss assets/css/style.css",
       "build": "npm run scss"
     }
 }
