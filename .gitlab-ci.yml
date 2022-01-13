@@ -1,5 +1,5 @@
 build:
-  image: node:16
+  image: node:latest
   stage: build
   script:
     - npm run build
