@@ -5,6 +5,6 @@
       "sass": "latest"
     },
     "scripts": {
-        "prepare": "sass --load-path assets/css --no-source-map --style compressed assets/css/style.scss assets/css/style.css"
+        "build": "sass --load-path assets/css --no-source-map --style compressed assets/css/style.scss assets/css/style.css"
     }
 }
