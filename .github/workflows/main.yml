@@ -28,3 +28,10 @@ jobs:
         with:
           source: assets/css/style.scss
           destination: assets/css/style.css
+
+      - name: Publish generated content to GitHub Pages
+        uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
+        with:
+          dir: .
+          branch: main
+          token: ${{ secrets.ACCESS_TOKEN }}
