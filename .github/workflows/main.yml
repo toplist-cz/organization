@@ -23,14 +23,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Compile CSS from SCSS files
-        uses: gha-utilities/sass-build@v0.4.8
-        with:
-          source: assets/css/style.scss
-          destination: assets/css/style.css
+      - name: Install and Build 🔧
+        run: |
+          npm ci
+          npm run build
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.2
         with:
           branch: gh-pages # The branch the action should deploy to.
-          folder: . # The folder the action should deploy.
+          folder: build # The folder the action should deploy.
