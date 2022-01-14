@@ -1,4 +1,4 @@
-const API_URL = 'http://10.2.30.9:8000/api'
+const API_URL = 'https://profi.toplist.cz/api'
 let orgIds = Array();
 
 const getVarFromUrl = (key) => {
