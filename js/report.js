@@ -29,7 +29,7 @@ const auth = async () => {
     if (apiAuthPromise !== null) {
         return apiAuthPromise;
     }
-    apiAuthPromise = fetch(API_URL+'/auth/cf5ac64a-ec50-11ea-9d60-a3da01a0b5f8', {
+    apiAuthPromise = fetch(API_URL+'/auth/1a37c6cc-73d7-11ec-ad3a-50465d7427c0', {
         method: 'PUT',
         mode: 'cors',
         cache: 'no-cache',
