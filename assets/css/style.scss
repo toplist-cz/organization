@@ -74,3 +74,12 @@ button {
 button:hover {
     filter: opacity(70%);
 }
+
+button.login {
+    background-color: $okColor;
+    display: inline;
+    font-size: 110%;
+    border: 1px solid;
+    border-radius: 2px;
+    padding: 5px 15px;
+}

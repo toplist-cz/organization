@@ -1,2 +1,6 @@
 assets/css/*.css
 assets/css/*.map
+public/assets/css/style.css
+public/assets/css/style.css.map
+public/assets/css/style.min.css
+public/assets/css/style.min.css.map

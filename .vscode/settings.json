@@ -4,13 +4,13 @@
         {
             "format": "expanded",
             "extensionName": ".css",
-            "savePath": "/assets/css"
+            "savePath": "/public/assets/css"
         },
         // You can add more
         {
             "format": "compressed",
             "extensionName": ".min.css",
-            "savePath": "/assets/css"
+            "savePath": "/public/assets/css"
         }
     ],
     "liveServer.settings.root": "/public",
