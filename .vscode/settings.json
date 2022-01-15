@@ -12,5 +12,7 @@
             "extensionName": ".min.css",
             "savePath": "/assets/css"
         }
-    ]
+    ],
+    "liveServer.settings.root": "/public",
+    "liveServer.settings.NoBrowser":true
 }
