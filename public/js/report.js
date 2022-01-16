@@ -49,7 +49,7 @@ const auth = async () => {
 const getApiToken = async () => {
     let v = await apiRequest()
     if (v['description'] === 'Expired') {
-        window.location='/?err=Expired'
+        window.location='../?err=Expired'
     }
     return (v.token)
 }
@@ -128,7 +128,7 @@ const toplistIds = async() => {
 const main = async () => {
     let JWT = parseJwt(getVarFromUrl('jwt'))
     if (!JWT) {
-        window.location='/?err=password'
+        window.location='../?err=password'
     }
     
     Object.keys(JWT.sco).forEach(scope => {
