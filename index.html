@@ -12,6 +12,15 @@
         </div>
     </div>
     <div style="width:100%; text-align: center;">
+        <div id="loginErr" class="hidden" style="margin: 2em auto; padding: 1em; background-color: #FFCCCC; border-radius: 3px; border: 1px solid red; max-width: 300px;">
+            Přihlášení vypršelo.
+        </div>
         <a href="https://profi.toplist.cz/auth/1a37c6cc-73d7-11ec-ad3a-50465d7427c0"><button class="login">Přihlásit</button></a>
     </div>
+    <script>
+        let url = new URL(location);
+        if (url.searchParams.get('err') == 'Expired') {
+            document.querySelector('#loginErr').classList.remove('hidden');
+        }
+    </script>
 </body>
